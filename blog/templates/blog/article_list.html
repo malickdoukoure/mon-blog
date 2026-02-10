@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    {% if current_category %}{{ current_category.name }} — {% endif %}Mon Blog
+{% endblock %}
+
+{% block content %}
+    {% if current_category %}
+        <h2>Catégorie : {{ current_category.name }}</h2>
+    {% endif %}
+
+    {% for article in articles %}
+        <div class="article-card">
+            <h2><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></h2>
+            <p class="article-meta">
+                Par {{ article.author }} — {{ article.created_at|date:"d M Y" }}
+                {% if article.category %}
+                    · <a href="{% url 'category_articles' article.category.pk %}" class="category-tag">{{ article.category }}</a>
+                {% endif %}
+            </p>
+            <p class="article-excerpt">{{ article.content|truncatewords:40 }}</p>
+        </div>
+    {% empty %}
+        <p>Aucun article pour le moment.</p>
+    {% endfor %}
+{% endblock %}

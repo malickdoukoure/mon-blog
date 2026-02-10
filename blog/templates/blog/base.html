@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Blog{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'article_list' %}">Mon Blog</a></h1>
+        <p>Un blog propulsé par Django</p>
+    </header>
+    
+    <nav>
+        <a href="{% url 'article_list' %}">Tous les articles</a>
+        {% for cat in categories %}
+            <a href="{% url 'category_articles' cat.pk %}">{{ cat.name }}</a>
+        {% endfor %}
+        
+        {% if user.is_authenticated %}
+            <a href="{% url 'article_create' %}">Écrire un article</a>
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="nav-logout">Déconnexion ({{ user.username }})</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Connexion</a>
+            <a href="{% url 'register' %}">Inscription</a>
+        {% endif %}
+    </nav>
+    
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    
+    <footer>
+        <p>© 2026 Mon Blog — Fait avec Django</p>
+    </footer>
+</body>
+</html>

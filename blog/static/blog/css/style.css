@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background: #0f0f0f;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    border-bottom: 2px solid #c9a84c;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at top, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+header h1 a {
+    color: #c9a84c;
+    text-decoration: none;
+    text-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+    transition: text-shadow 0.3s ease;
+}
+
+header h1 a:hover {
+    text-shadow: 0 0 50px rgba(201, 168, 76, 0.6);
+}
+
+header p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+/* Navigation */
+nav {
+    background: rgba(15, 15, 15, 0.95);
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+nav a:hover,
+nav a.active {
+    color: #c9a84c;
+    border-color: rgba(201, 168, 76, 0.3);
+    background: rgba(201, 168, 76, 0.1);
+}
+
+/* Container */
+.container {
+    max-width: 850px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Article Card */
+.article-card {
+    background: linear-gradient(145deg, #1a1a1a, #222222);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.article-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, #c9a84c, transparent);
+}
+
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(201, 168, 76, 0.15);
+    border-color: rgba(201, 168, 76, 0.3);
+}
+
+.article-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.article-card h2 a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.article-card h2 a:hover {
+    color: #c9a84c;
+}
+
+.article-meta {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.85rem;
+    margin: 0.8rem 0;
+    letter-spacing: 0.5px;
+}
+
+.article-excerpt {
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 300;
+}
+
+/* Category Tag */
+.category-tag {
+    background: linear-gradient(135deg, #c9a84c, #a88832);
+    color: #1a1a1a;
+    padding: 0.25rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.category-tag:hover {
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.4);
+}
+
+/* Article Full */
+.article-full {
+    background: linear-gradient(145deg, #1a1a1a, #222222);
+    padding: 3rem;
+    border-radius: 12px;
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    line-height: 1.9;
+}
+
+.article-full h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #f0f0f0;
+    margin-bottom: 0.5rem;
+}
+
+.article-full hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201, 168, 76, 0.5), transparent);
+    margin: 1.5rem 0;
+}
+
+.article-full div {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 300;
+}
+
+/* Comments */
+.comment {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.2rem 1.5rem;
+    margin-top: 1rem;
+    border-left: 3px solid #c9a84c;
+    border-radius: 0 8px 8px 0;
+    transition: background 0.3s ease;
+}
+
+.comment:hover {
+    background: rgba(201, 168, 76, 0.05);
+}
+
+.comment-author {
+    font-weight: 700;
+    color: #c9a84c;
+    font-size: 0.9rem;
+}
+
+h3 {
+    font-family: 'Playfair Display', serif;
+    color: #f0f0f0;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 3rem;
+    border-top: 1px solid rgba(201, 168, 76, 0.1);
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #c9a84c;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    background: rgba(255, 255, 255, 0.05);
+    color: #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #c9a84c;
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.15);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #c9a84c, #a88832);
+    color: #1a1a1a;
+    padding: 0.7rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    box-shadow: 0 0 25px rgba(201, 168, 76, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.btn-danger:hover {
+    box-shadow: 0 0 25px rgba(231, 76, 60, 0.4);
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 0.9rem;
+}
+
+.form-link {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-link a {
+    color: #c9a84c;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+    transition: all 0.3s ease;
+}
+
+.form-link a:hover {
+    border-bottom-color: #c9a84c;
+}
+
+.article-actions {
+    margin: 1rem 0;
+}
+
+/* Logout button in nav */
+.nav-logout {
+    background: none;
+    border: 1px solid transparent;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.nav-logout:hover {
+    color: #c9a84c;
+    border-color: rgba(201, 168, 76, 0.3);
+    background: rgba(201, 168, 76, 0.1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f0f0f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(201, 168, 76, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 168, 76, 0.5);
+}
+
+/* Selection */
+::selection {
+    background: rgba(201, 168, 76, 0.3);
+    color: white;
+}
