@@ -11,11 +11,11 @@
 
     {% for article in articles %}
         <div class="article-card">
-            <h2><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></h2>
+            <h2><a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a></h2>
             <p class="article-meta">
                 Par {{ article.author }} — {{ article.created_at|date:"d M Y" }}
                 {% if article.category %}
-                    · <a href="{% url 'category_articles' article.category.pk %}" class="category-tag">{{ article.category }}</a>
+                    · <a href="{% url 'category_articles' article.category.slug %}" class="category-tag">{{ article.category }}</a>
                 {% endif %}
             </p>
             <p class="article-excerpt">{{ article.content|truncatewords:40 }}</p>
@@ -23,4 +23,16 @@
     {% empty %}
         <p>Aucun article pour le moment.</p>
     {% endfor %}
+
+    {% if articles.has_other_pages %}
+        <div class="pagination">
+            {% if articles.has_previous %}
+                <a href="?page={{ articles.previous_page_number }}" class="btn">&laquo; Précédent</a>
+            {% endif %}
+            <span class="page-info">Page {{ articles.number }} sur {{ articles.paginator.num_pages }}</span>
+            {% if articles.has_next %}
+                <a href="?page={{ articles.next_page_number }}" class="btn">Suivant &raquo;</a>
+            {% endif %}
+        </div>
+    {% endif %}
 {% endblock %}

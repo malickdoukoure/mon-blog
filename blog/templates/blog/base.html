@@ -16,7 +16,7 @@
     <nav>
         <a href="{% url 'article_list' %}">Tous les articles</a>
         {% for cat in categories %}
-            <a href="{% url 'category_articles' cat.pk %}">{{ cat.name }}</a>
+            <a href="{% url 'category_articles' cat.slug %}">{{ cat.name }}</a>
         {% endfor %}
         
         {% if user.is_authenticated %}

@@ -8,23 +8,23 @@
         <p class="article-meta">
             Par {{ article.author }} — {{ article.created_at|date:"d M Y à H:i" }}
             {% if article.category %}
-                · <a href="{% url 'category_articles' article.category.pk %}" class="category-tag">{{ article.category }}</a>
+                · <a href="{% url 'category_articles' article.category.slug %}" class="category-tag">{{ article.category }}</a>
             {% endif %}
         </p>
-        
+
         {% if user == article.author %}
             <p class="article-actions">
-                <a href="{% url 'article_edit' article.pk %}" class="btn">Modifier</a>
-                <a href="{% url 'article_delete' article.pk %}" class="btn btn-danger">Supprimer</a>
+                <a href="{% url 'article_edit' article.slug %}" class="btn">Modifier</a>
+                <a href="{% url 'article_delete' article.slug %}" class="btn btn-danger">Supprimer</a>
             </p>
         {% endif %}
-        
+
         <hr>
         <div>{{ article.content|linebreaks }}</div>
     </div>
 
     <h3>Commentaires ({{ article.comments.count }})</h3>
-    
+
     {% for comment in article.comments.all %}
         <div class="comment">
             <p class="comment-author">{{ comment.author }} · {{ comment.created_at|date:"d M Y à H:i" }}</p>

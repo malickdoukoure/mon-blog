@@ -380,6 +380,22 @@ footer {
     background: rgba(201, 168, 76, 0.5);
 }
 
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    padding: 1.5rem 0;
+}
+
+.page-info {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
 /* Selection */
 ::selection {
     background: rgba(201, 168, 76, 0.3);
