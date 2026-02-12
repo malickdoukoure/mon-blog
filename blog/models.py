@@ -1,19 +1,27 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
-    
+
     class Meta:
         verbose_name_plural = "categories"
 
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
     content = models.TextField()
     image = models.ImageField(upload_to='articles/', blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -21,13 +29,28 @@ class Article(models.Model):
     likes = models.ManyToManyField(User, related_name='liked_articles', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+            # Gestion des doublons
+            original_slug = self.slug
+            counter = 1
+            while Article.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
+                self.slug = f"{original_slug}-{counter}"
+                counter += 1
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.title
+<<<<<<< HEAD
     
     def total_likes(self):
         return self.likes.count()
     
+=======
+
+>>>>>>> claude/review-code-changes-pDYzI
     class Meta:
         ordering = ['-created_at']
 

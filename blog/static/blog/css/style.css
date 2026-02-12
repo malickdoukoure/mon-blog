@@ -380,6 +380,136 @@ footer {
     background: rgba(201, 168, 76, 0.5);
 }
 
+/* Search */
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    color: #e0e0e0;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-family: 'Lato', sans-serif;
+    width: 160px;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    width: 220px;
+    border-color: #c9a84c;
+    box-shadow: 0 0 10px rgba(201, 168, 76, 0.15);
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.htmx-indicator {
+    display: none;
+    color: #c9a84c;
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
+}
+
+.htmx-request .htmx-indicator,
+.htmx-request.htmx-indicator {
+    display: inline;
+}
+
+#search-results {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+#search-results:empty {
+    display: none;
+}
+
+#search-results:not(:empty) {
+    background: #1a1a1a;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.search-result {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.search-result:last-child {
+    border-bottom: none;
+}
+
+.search-result a {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.search-result a:hover {
+    background: rgba(201, 168, 76, 0.1);
+    color: #c9a84c;
+}
+
+.search-result .search-meta {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 0.2rem;
+}
+
+.search-empty {
+    padding: 0.8rem 1.2rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+
+/* Animations */
+.fade-target {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.comment-new {
+    animation: highlight 1.5s ease;
+}
+
+@keyframes highlight {
+    0% { background: rgba(201, 168, 76, 0.2); }
+    100% { background: rgba(255, 255, 255, 0.03); }
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    padding: 1.5rem 0;
+}
+
+.page-info {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
 /* Selection */
 ::selection {
     background: rgba(201, 168, 76, 0.3);

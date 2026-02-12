@@ -1,0 +1,10 @@
+{% for article in articles %}
+    <div class="search-result">
+        <a href="{% url 'article_detail' article.slug %}">
+            <strong>{{ article.title }}</strong>
+            <span class="search-meta">Par {{ article.author }} — {{ article.created_at|date:"d M Y" }}</span>
+        </a>
+    </div>
+{% empty %}
+    <div class="search-result search-empty">Aucun résultat.</div>
+{% endfor %}
