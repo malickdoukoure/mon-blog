@@ -4,6 +4,12 @@
 
 {% block content %}
     <div class="article-full">
+        {% if article.image %}
+            <div class="article-hero">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" loading="lazy">
+            </div>
+        {% endif %}
+
         <h1>{{ article.title }}</h1>
         <p class="article-meta">
             Par {{ article.author }} — {{ article.created_at|date:"d M Y à H:i" }}

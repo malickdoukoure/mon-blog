@@ -91,7 +91,7 @@ def register(request):
 @login_required
 def article_create(request):
     if request.method == 'POST':
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
@@ -107,7 +107,7 @@ def article_create(request):
 def article_edit(request, slug):
     article = get_object_or_404(Article, slug=slug, author=request.user)
     if request.method == 'POST':
-        form = ArticleForm(request.POST, instance=article)
+        form = ArticleForm(request.POST, request.FILES, instance=article)
         if form.is_valid():
             form.save()
             return redirect('article_detail', slug=article.slug)

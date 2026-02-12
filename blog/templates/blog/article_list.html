@@ -10,15 +10,24 @@
     {% endif %}
 
     {% for article in articles %}
-        <div class="article-card">
-            <h2><a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a></h2>
-            <p class="article-meta">
-                Par {{ article.author }} — {{ article.created_at|date:"d M Y" }}
-                {% if article.category %}
-                    · <a href="{% url 'category_articles' article.category.slug %}" class="category-tag">{{ article.category }}</a>
-                {% endif %}
-            </p>
-            <p class="article-excerpt">{{ article.content|truncatewords:40 }}</p>
+        <div class="article-card {% if article.image %}has-image{% endif %}">
+            {% if article.image %}
+                <div class="article-image">
+                    <a href="{% url 'article_detail' article.slug %}">
+                        <img src="{{ article.image.url }}" alt="{{ article.title }}" loading="lazy">
+                    </a>
+                </div>
+            {% endif %}
+            <div class="article-body">
+                <h2><a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a></h2>
+                <p class="article-meta">
+                    Par {{ article.author }} — {{ article.created_at|date:"d M Y" }}
+                    {% if article.category %}
+                        · <a href="{% url 'category_articles' article.category.slug %}" class="category-tag">{{ article.category }}</a>
+                    {% endif %}
+                </p>
+                <p class="article-excerpt">{{ article.content|truncatewords:40 }}</p>
+            </div>
         </div>
     {% empty %}
         <p>Aucun article pour le moment.</p>

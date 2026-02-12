@@ -583,6 +583,113 @@ footer {
     letter-spacing: 0.5px;
 }
 
+/* ===========================
+   Article Images
+   =========================== */
+
+/* Card with image - horizontal layout */
+.article-card.has-image {
+    display: flex;
+    gap: 0;
+    padding: 0;
+}
+
+.article-card.has-image::before {
+    display: none;
+}
+
+.article-card.has-image .article-image {
+    flex: 0 0 280px;
+    position: relative;
+    overflow: hidden;
+}
+
+.article-card.has-image .article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.article-card.has-image:hover .article-image img {
+    transform: scale(1.08);
+}
+
+.article-card.has-image .article-body {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 3px solid var(--accent-light);
+}
+
+/* Hero image on detail page */
+.article-hero {
+    margin: -3rem -3rem 2rem -3rem;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    position: relative;
+    max-height: 450px;
+}
+
+.article-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    animation: zoomIn 0.8s ease-out;
+}
+
+.article-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, var(--bg-card), transparent);
+    pointer-events: none;
+}
+
+/* Image preview in form */
+.image-preview {
+    margin-top: 0.8rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    max-width: 300px;
+}
+
+.image-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* File input styling */
+.form-group input[type="file"] {
+    padding: 0.6rem;
+    background: var(--bg-card-alt);
+    cursor: pointer;
+}
+
+.form-group input[type="file"]:hover {
+    border-color: var(--accent);
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 /* Selection */
 ::selection {
     background: rgba(var(--accent-rgb), 0.2);
@@ -639,6 +746,15 @@ footer {
         font-size: 2rem;
     }
 
+    .article-card.has-image .article-image {
+        flex: 0 0 200px;
+    }
+
+    .article-hero {
+        margin: -2rem -2rem 1.5rem -2rem;
+        max-height: 300px;
+    }
+
     .search-box input {
         width: 130px;
     }
@@ -690,8 +806,28 @@ footer {
         font-size: 1.2rem;
     }
 
+    .article-card.has-image {
+        flex-direction: column;
+    }
+
+    .article-card.has-image .article-image {
+        flex: none;
+        height: 200px;
+    }
+
+    .article-card.has-image .article-body {
+        border-left: none;
+        border-top: 3px solid var(--accent-light);
+        padding: 1.2rem;
+    }
+
     .article-card:hover {
         transform: translateY(-2px);
+    }
+
+    .article-hero {
+        margin: -1.5rem -1.5rem 1rem -1.5rem;
+        max-height: 220px;
     }
 
     .article-full {
