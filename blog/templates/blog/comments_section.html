@@ -1,0 +1,29 @@
+<div id="comments-section">
+    <h3>Commentaires ({{ article.comments.count }})</h3>
+
+    <div id="comments-list">
+        {% for comment in article.comments.all %}
+            <div class="comment {% if forloop.last %}comment-new{% endif %}">
+                <p class="comment-author">{{ comment.author }} · {{ comment.created_at|date:"d M Y à H:i" }}</p>
+                <p>{{ comment.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <div class="article-full" style="margin-top: 1rem;">
+            <h3>Ajouter un commentaire</h3>
+            <form method="post"
+                  hx-post="{% url 'add_comment' article.slug %}"
+                  hx-target="#comments-section"
+                  hx-swap="outerHTML"
+                  hx-on::after-request="if(event.detail.successful) this.reset()">
+                {% csrf_token %}
+                {{ comment_form.content }}
+                <button type="submit" class="btn">Commenter</button>
+            </form>
+        </div>
+    {% else %}
+        <p class="form-link"><a href="{% url 'login' %}">Connectez-vous</a> pour commenter.</p>
+    {% endif %}
+</div>

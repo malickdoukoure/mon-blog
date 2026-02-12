@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .models import Article, Category
 from .forms import RegisterForm, ArticleForm, CommentForm
 
@@ -46,6 +47,32 @@ def category_articles(request, slug):
     return render(request, 'blog/article_list.html', {
         'articles': articles,
         'current_category': category,
+    })
+
+def search(request):
+    query = request.GET.get('q', '').strip()
+    articles = []
+    if query:
+        articles = Article.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        )[:10]
+    return render(request, 'blog/search_results.html', {
+        'articles': articles,
+    })
+
+@login_required
+def add_comment(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    comment_form = CommentForm(request.POST or None)
+    if request.method == 'POST' and comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.author = request.user
+        comment.article = article
+        comment.save()
+        comment_form = CommentForm()
+    return render(request, 'blog/comments_section.html', {
+        'article': article,
+        'comment_form': comment_form,
     })
 
 def register(request):
