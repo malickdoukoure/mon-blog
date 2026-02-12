@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get(
     'django-insecure-3kjr*+g7mqq-6cblk3+8=6)bdwecag&+qood615&0n_h)#pvyl'
 )
 
-DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,.onrender.com').split(',')
 CSRF_TRUSTED_ORIGINS = [
