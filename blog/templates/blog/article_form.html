@@ -5,12 +5,17 @@
 {% block content %}
     <div class="article-full">
         <h1>{% if form.instance.pk %}Modifier l'article{% else %}Nouvel article{% endif %}</h1>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
                 <div class="form-group">
                     <label>{{ field.label }}</label>
                     {{ field }}
+                    {% if field.name == 'image' and form.instance.image %}
+                        <div class="image-preview">
+                            <img src="{{ form.instance.image.url }}" alt="Image actuelle">
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
             <button type="submit" class="btn">Publier</button>
